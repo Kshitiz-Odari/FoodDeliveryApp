@@ -1,0 +1,76 @@
+{
+  "project_info": {
+    "project_number": "870052428584",
+    "project_id": "fooddeliver-90a2c",
+    "storage_bucket": "fooddeliver-90a2c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:870052428584:android:7d07f78bd048578cd56e1d",
+        "android_client_info": {
+          "package_name": "com.example.deliveryapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "870052428584-563ip84j86s7ed2cr7cfjmpghctm11la.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.deliveryapp",
+            "certificate_hash": "7efdd52a7cbc28201ace6ae929925f6a1a91a240"
+          }
+        },
+        {
+          "client_id": "870052428584-82otnk660gl91s000nu0agotb467hgk5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDX_V1BC3TJ8haJLozaYnLOSTusPDW6DgU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "870052428584-82otnk660gl91s000nu0agotb467hgk5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:870052428584:android:85f3cac7ece643ead56e1d",
+        "android_client_info": {
+          "package_name": "com.kshitiz.deliveryapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "870052428584-82otnk660gl91s000nu0agotb467hgk5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDX_V1BC3TJ8haJLozaYnLOSTusPDW6DgU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "870052428584-82otnk660gl91s000nu0agotb467hgk5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
