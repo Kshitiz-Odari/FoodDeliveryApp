@@ -49,7 +49,7 @@ class MyCurrentLocation extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "deliver me from hell",
+            "Awesome Eats",
             style: TextStyle(
               color: Theme.of(context).colorScheme.primary,
             ),
@@ -69,7 +69,7 @@ class MyCurrentLocation extends StatelessWidget {
                   ),
                 ),
                 //drop down menu
-                Icon(Icons.keyboard_arrow_down_rounded),
+                const Icon(Icons.keyboard_arrow_down_rounded),
               ],
             ),
           )

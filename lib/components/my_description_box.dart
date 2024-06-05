@@ -41,7 +41,7 @@ class MyDescriptionBox extends StatelessWidget {
           Column(
             children: [
               Text(
-                "15-20 min",
+                "30 minutes Max",
                 style: myPrimaryTextStyle,
               ),
               Text(

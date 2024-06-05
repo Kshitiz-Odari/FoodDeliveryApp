@@ -21,10 +21,10 @@ class MyDrawer extends StatelessWidget {
           //app logo
           Padding(
             padding: const EdgeInsets.only(top: 100.0),
-            child: Icon(
-              Icons.lock_open_rounded,
-              size: 60,
-              color: Theme.of(context).colorScheme.inversePrimary,
+            child: Image.asset(
+              'lib/images/logo.png',
+              width: 100,
+              height: 100,
             ),
           ),
 

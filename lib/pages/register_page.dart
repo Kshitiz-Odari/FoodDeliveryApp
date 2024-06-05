@@ -1,13 +1,12 @@
-// ignore_for_file: use_build_context_synchronously
-
+import 'package:flutter/material.dart';
 import 'package:deliveryapp/components/my_button.dart';
 import 'package:deliveryapp/components/my_textfield.dart';
 import 'package:deliveryapp/services/auth/auth_service.dart';
-import 'package:flutter/material.dart';
 
 class RegisterPage extends StatefulWidget {
   final void Function()? onTap;
-  const RegisterPage({super.key, required this.onTap});
+
+  const RegisterPage({Key? key, required this.onTap}) : super(key: key);
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
@@ -15,26 +14,20 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController emailController = TextEditingController();
-
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
       TextEditingController();
 
   void register() async {
-    //get auth service
     final authService = AuthService();
 
-    //check if password match - crete user
     if (passwordController.text == confirmPasswordController.text) {
-      //create user
       try {
         await authService.signUpWithEmailPassword(
           emailController.text,
           passwordController.text,
         );
-      }
-      //display any error
-      catch (e) {
+      } catch (e) {
         showDialog(
           context: context,
           builder: (context) => AlertDialog(
@@ -42,10 +35,7 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
         );
       }
-    }
-
-    //or show error if not match
-    else {
+    } else {
       showDialog(
         context: context,
         builder: (context) => const AlertDialog(
@@ -58,68 +48,91 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.surface,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.lock_open_rounded,
-              size: 70,
-              color: Theme.of(context).colorScheme.inversePrimary,
+      backgroundColor: Colors.transparent,
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: Image.asset(
+              'lib/images/background.png',
+              fit: BoxFit.cover,
             ),
-            const SizedBox(height: 25),
-            Text(
-              "Creating an Account",
-              style: TextStyle(
-                fontSize: 30,
-                color: Theme.of(context).colorScheme.inversePrimary,
-              ),
+          ),
+          Positioned.fill(
+            child: Container(
+              color: Colors.black.withOpacity(0.5),
             ),
-            const SizedBox(height: 20),
-            MyTextField(
-              controller: emailController,
-              hintText: "Email",
-              obscureText: false,
-            ),
-            const SizedBox(height: 20),
-            MyTextField(
-              controller: passwordController,
-              hintText: "Your Password",
-              obscureText: true,
-            ),
-            const SizedBox(height: 20),
-            MyTextField(
-              controller: confirmPasswordController,
-              hintText: "Confirm your Password",
-              obscureText: true,
-            ),
-            const SizedBox(height: 20),
-            MyButton(text: "Sign up", onTap: register),
-            const SizedBox(height: 20),
-            Row(
+          ),
+          Center(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  "Already have an account?",
-                  style: TextStyle(
-                      color: Theme.of(context).colorScheme.inversePrimary),
+                Image.asset(
+                  'lib/images/logo.png',
+                  width: 100,
+                  height: 100,
                 ),
-                const SizedBox(width: 4),
-                GestureDetector(
-                  onTap: widget.onTap,
-                  child: Text(
-                    "Login now!",
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.inversePrimary,
-                      fontWeight: FontWeight.bold,
-                    ),
+                const SizedBox(height: 25),
+                Text(
+                  "Creating an Account",
+                  style: TextStyle(
+                    fontSize: 30,
+                    color: Colors.white,
                   ),
                 ),
+                const SizedBox(height: 20),
+                MyTextField(
+                  controller: emailController,
+                  hintText: "Email",
+                  obscureText: false,
+                  backgroundColor: Colors.white, // Set white background color
+                ),
+                const SizedBox(height: 20),
+                MyTextField(
+                  controller: passwordController,
+                  hintText: "Your Password",
+                  obscureText: true,
+                  backgroundColor: Colors.white, // Set white background color
+                ),
+                const SizedBox(height: 20),
+                MyTextField(
+                  controller: confirmPasswordController,
+                  hintText: "Confirm your Password",
+                  obscureText: true,
+                  backgroundColor: Colors.white, // Set white background color
+                ),
+                const SizedBox(height: 20),
+                SizedBox(
+                  width: 200,
+                  child: MyButton(
+                    text: "Sign Up",
+                    onTap: register,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Already have an account?",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    const SizedBox(width: 4),
+                    GestureDetector(
+                      onTap: widget.onTap,
+                      child: Text(
+                        "Login now!",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                )
               ],
-            )
-          ],
-        ),
+            ),
+          ),
+        ],
       ),
     );
   }

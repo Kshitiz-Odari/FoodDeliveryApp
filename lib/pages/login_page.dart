@@ -1,38 +1,30 @@
-// ignore_for_file: use_build_context_synchronously
-
+import 'package:flutter/material.dart';
 import 'package:deliveryapp/components/my_button.dart';
 import 'package:deliveryapp/components/my_textfield.dart';
 import 'package:deliveryapp/services/auth/auth_service.dart';
-import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
   final void Function()? onTap;
 
-  const LoginPage({super.key, required this.onTap});
+  const LoginPage({Key? key, required this.onTap}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-  //text editing controllers
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  //login method
   void login() async {
-    //get instance of auth service
     final _authService = AuthService();
 
-    //try sign up
     try {
       await _authService.signInWithEmailPassword(
         emailController.text,
         passwordController.text,
       );
-    }
-    //display any error
-    catch (e) {
+    } catch (e) {
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
@@ -45,71 +37,85 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.surface,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            //food delivery icon
-            Icon(
-              Icons.lock_open_rounded,
-              size: 70,
-              color: Theme.of(context).colorScheme.inversePrimary,
+      backgroundColor: Colors.transparent, // Make the background transparent
+      body: Stack(
+        children: [
+          // Background image with opacity
+          Positioned.fill(
+            child: Image.asset(
+              'lib/images/background.png',
+              fit: BoxFit.cover,
+              colorBlendMode: BlendMode.darken,
+              color: Colors.black.withOpacity(0.5), // Adjust opacity here
             ),
-
-            //name
-            const SizedBox(height: 25),
-            Text(
-              "Food Delivery App",
-              style: TextStyle(
-                fontSize: 30,
-                color: Theme.of(context).colorScheme.inversePrimary,
-              ),
-            ),
-
-            //email and password
-            const SizedBox(height: 20),
-            MyTextField(
-              controller: emailController,
-              hintText: "Email",
-              obscureText: false,
-            ),
-            const SizedBox(height: 20),
-            MyTextField(
-              controller: passwordController,
-              hintText: "Password",
-              obscureText: true,
-            ),
-
-            //sign in button
-            const SizedBox(height: 20),
-            MyButton(text: "Sign in", onTap: login),
-
-            //register button
-            const SizedBox(height: 20),
-            Row(
+          ),
+          Center(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
-                  "Don't have an account?",
-                  style: TextStyle(
-                      color: Theme.of(context).colorScheme.inversePrimary),
+                // Food delivery icon
+                Image.asset(
+                  'lib/images/logo.png',
+                  width: 100,
+                  height: 100,
                 ),
-                const SizedBox(width: 4),
-                GestureDetector(
-                  onTap: widget.onTap,
-                  child: Text(
-                    "Register now!",
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.inversePrimary,
-                      fontWeight: FontWeight.bold,
-                    ),
+                const SizedBox(height: 25),
+                Text(
+                  "Food Delivery App",
+                  style: TextStyle(
+                    fontSize: 30,
+                    color: Colors.white, // Text color on top of the image
                   ),
                 ),
+                const SizedBox(height: 20),
+                MyTextField(
+                  controller: emailController,
+                  hintText: "Email",
+                  obscureText: false,
+                  backgroundColor:
+                      Colors.white.withOpacity(0.7), // White with opacity
+                ),
+                const SizedBox(height: 20),
+                MyTextField(
+                  controller: passwordController,
+                  hintText: "Password",
+                  obscureText: true,
+                  backgroundColor:
+                      Colors.white.withOpacity(0.7), // White with opacity
+                ),
+                const SizedBox(height: 20),
+                SizedBox(
+                  width: 200,
+                  child: MyButton(
+                    text: "Sign in",
+                    onTap: login,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Don't have an account?",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    const SizedBox(width: 4),
+                    GestureDetector(
+                      onTap: widget.onTap,
+                      child: Text(
+                        "Register now!",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ],
-            )
-          ],
-        ),
+            ),
+          ),
+        ],
       ),
     );
   }
